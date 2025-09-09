@@ -19,7 +19,7 @@
 - Gromore: onAdShow() → call `GromoreAdWrapper.track*AdImpression` (wrapper reads eCPM internally).
 - IronSource: use `IronSourceWrapper.addImpressionDataListener(...)` (do NOT call `LevelPlay.addImpressionDataListener(...)` directly).
 - Taku/TopOn: in show callbacks call `TakuAdWrapper.Track*AdRevenue` / `TopOnAdWrapper.Track*AdRevenue`.
-- 
+
 ### Project layout (high‑level)
 
 - `app/src/main/java/com/solarengine/solarengine_meditation_sample/`
@@ -35,7 +35,7 @@
 3) When the SDK provides revenue/impression callbacks, call the corresponding wrapper to forward data to SolarEngine:
    - AdMob: onPaidEventListener ➜ `AdMobAdWrapper` which calls `buildInterstitialOnPaidEventListener()`
      
-     Example (Interstitial):
+     Example (Interstitial, onPaidEventListener):
      
      ```kotlin
        interstitialAd.fullScreenContentCallback = object : FullScreenContentCallback() {}
@@ -83,7 +83,7 @@
      ```
    - Taku/TopOn: callback info ➜ `TakuAdWrapper` / `TopOnAdWrapper` which calls `TrackRewardedAdRevenue()`
      
-     Example (Taku, Rewarded shown):
+     Example (Taku, Rewarded onRewardedVideoAdPlayStart):
      
      ```java
        // In the Topon/Taku rewarded show callback
