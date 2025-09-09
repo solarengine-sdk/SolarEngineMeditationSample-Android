@@ -31,7 +31,7 @@
 ### 如何在你的应用中使用
 
 1) 按官方文档集成你选定的聚合 SDK（MAX、AdMob、Gromore、IronSource、Taku、TopOn）。
-2) 参考本示例接入各 SDK 的监听/回调。
+2) 参考本示例接入各 SDK 的监听/回调 (您可以从[这里](https://github.com/solarengine-sdk/SolarEngineMeditationSample-Android/blob/main/wrappers.zip)下载各聚合平台的wrapper,从中移除您不需要的文件,仅保留您要使用的聚合对应的wrapper文件即可)。
 3) 当触发收益/曝光回调时，调用相应 Wrapper 将数据上报到 SolarEngine：
    - AdMob：onPaidEvent → `AdMobAdWrapper.*` → `AdMobSolarEngineTracker`
    - MAX：AdRevenuePaid → `Max*AdWrapper` → `MaxSolarEngineTracker`
