@@ -14,12 +14,12 @@
 
 ### Key points by network
 
-- AdMob: use onPaidEvent (AdValue + ResponseInfo) and forward via `AdMobSolarEngineTracker`.
-- MAX: use `AdRevenuePaid` per ad type; forward via `MaxSolarEngineTracker` with a `MaxAdType` enum.
-- Gromore: use `getShowEcpm()` (MediationAdEcpmInfo); forward via `GromoreSolarEngineTracker` with `GromoreAdType`.
-- IronSource: use `LevelPlayImpressionData`; forward via `IronSourceSolarEngineTracker`.
-- Taku/TopOn: use callback info objects; forward via their respective trackers with enums.
-
+- AdMob: onPaidEventListener → build via `AdMobAdWrapper` (e.g., `buildInterstitialOnPaidEventListener()`).
+- MAX: handle `onAdRevenuePaid()` → call the matching `Max*AdWrapper`.
+- Gromore: onAdShow() → call `GromoreAdWrapper.track*AdImpression` (wrapper reads eCPM internally).
+- IronSource: use `IronSourceWrapper.addImpressionDataListener(...)` (do NOT call `LevelPlay.addImpressionDataListener(...)` directly).
+- Taku/TopOn: in show callbacks call `TakuAdWrapper.Track*AdRevenue` / `TopOnAdWrapper.Track*AdRevenue`.
+- 
 ### Project layout (high‑level)
 
 - `app/src/main/java/com/solarengine/solarengine_meditation_sample/`
