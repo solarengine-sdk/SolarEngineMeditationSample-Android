@@ -34,10 +34,63 @@
 2) Use this sample as a reference for wiring that SDK’s listeners/callbacks (You can download the wrapper file from [here](https://github.com/solarengine-sdk/SolarEngineMeditationSample-Android/blob/main/wrappers.zip), delete the mediation wrapper file you don`t need).
 3) When the SDK provides revenue/impression callbacks, call the corresponding wrapper to forward data to SolarEngine:
    - AdMob: onPaidEvent ➜ `AdMobAdWrapper.*` which calls `AdMobSolarEngineTracker`
+     
+     Example (Interstitial):
+     
+     ```kotlin
+     interstitialAd.fullScreenContentCallback = object : FullScreenContentCallback() {}
+     interstitialAd.onPaidEventListener = AdMobAdWrapper.buildInterstitialOnPaidEventListener()
+     ```
    - MAX: AdRevenuePaid ➜ `Max*AdWrapper` which calls `MaxSolarEngineTracker`
-   - Gromore: `getShowEcpm()` ➜ `GromoreAdWrapper` which calls `GromoreSolarEngineTracker`
+     
+     Example (Rewarded,onAdRevenuePaid):
+     
+     ```kotlin
+     MaxRewardedAd sharedRewarded = MaxRewardedAd.getInstance("YOUR_UNIT_ID", this)
+     sharedRewarded.setListener(object : MaxRewardedAdListener {
+         override fun onAdRevenuePaid(ad: MaxAd) {
+             MaxRewardedAdWrapper.onAdRevenuePaid(ad)
+         }
+     })
+     ```
+   - Gromore: `onAdShow()` ➜ `GromoreAdWrapper` which calls `GromoreSolarEngineTracker`
+     
+     Example (Interstitial, onAdShow):
+     
+     ```kotlin
+
+    override fun onFullScreenVideoAdLoad(ttFullScreenVideoAd: TTFullScreenVideoAd) {
+        LogUtils.i("Gromore Interstitial ad loaded successfully")
+        interstitialAd = ttFullScreenVideoAd
+        ttFullScreenVideoAd.setFullScreenVideoAdInteractionListener(object
+            : TTFullScreenVideoAd.FullScreenVideoAdInteractionListener {
+            override fun onAdShow() {
+                GromoreAdWrapper.trackInterstitialAdImpression(this@GromoreAdActivity, interstitialAd)
+            }
+            ...
+
+        })
+    }
+     ```
    - IronSource: add a `LevelPlayImpressionDataListener` via `IronSourceWrapper.addImpressionDataListener(context, yourListener)` (do NOT call `LevelPlay.addImpressionDataListener(...)` directly); the wrapper tracks to `IronSourceSolarEngineTracker` and then forwards to your listener
+     
+     Example:
+     
+     ```kotlin
+     IronSourceWrapper.addImpressionDataListener(this) { data ->
+         // Your own logic here (wrapper already forwarded to SolarEngine)
+     }
+     ```
    - Taku/TopOn: callback info ➜ `TakuAdWrapper` / `TopOnAdWrapper` which call their trackers
+     
+     Example (Taku, Rewarded shown):
+     
+     ```java
+     // In the Topon/Taku rewarded show callback
+     public void onRewardedVideoAdPlayStart(String placementId, ATCallbackInfo info) {
+         TakuAdWrapper.TrackRewardedAdRevenue(TakuAdType.RewardVideo, info);
+     }
+     ``` 
 4) Keep your app code focused on load/show logic; let wrappers normalize and report to SolarEngine.
 
  
