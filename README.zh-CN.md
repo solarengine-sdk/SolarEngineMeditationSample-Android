@@ -14,11 +14,11 @@
 
 ### 各平台要点
 
-- AdMob：使用 onPaidEvent（AdValue + ResponseInfo）→ `AdMobAdWrapper.*` → `AdMobSolarEngineTracker`。
-- MAX：每种广告类型使用 AdRevenuePaid → `Max*AdWrapper` → `MaxSolarEngineTracker`（含 `MaxAdType` 枚举）。
-- Gromore：使用 `getShowEcpm()`（MediationAdEcpmInfo）→ `GromoreAdWrapper` → `GromoreSolarEngineTracker`（含 `GromoreAdType`）。
-- IronSource：通过 `IronSourceWrapper.addImpressionDataListener(context, yourListener)` 添加 LevelPlay 监听（不要直接调用 `LevelPlay.addImpressionDataListener(...)`），Wrapper 先上报 `IronSourceSolarEngineTracker`，再转发给你的监听。
-- Taku/TopOn：使用各自的回调信息对象 → `TakuAdWrapper` / `TopOnAdWrapper` → 各自的 Tracker。
+- AdMob：onPaidEventListener → 通过 `AdMobAdWrapper` 构建监听（如 `buildInterstitialOnPaidEventListener()`）。
+- MAX：在 `onAdRevenuePaid()` 回调中 → 调用相应 `Max*AdWrapper`。
+- Gromore：在广告显示回调 `onAdShow()` 中 → 调用 `GromoreAdWrapper.track*AdImpression`（内部读取 eCPM）。
+- IronSource：使用 `IronSourceWrapper.addImpressionDataListener(context, yourListener)`（不要直接调用 `LevelPlay.addImpressionDataListener(...)`），Wrapper 先上报再转发给你的监听。
+- Taku/TopOn：在展示回调中，调用 `TakuAdWrapper.Track*AdRevenue` / `TopOnAdWrapper.Track*AdRevenue`。
 
 ### 目录结构（概览）
 
@@ -33,11 +33,53 @@
 1) 按官方文档集成你选定的聚合 SDK（MAX、AdMob、Gromore、IronSource、Taku、TopOn）。
 2) 参考本示例接入各 SDK 的监听/回调 (您可以从[这里](https://github.com/solarengine-sdk/SolarEngineMeditationSample-Android/blob/main/wrappers.zip)下载各聚合平台的wrapper,从中移除您不需要的文件,仅保留您要使用的聚合对应的wrapper文件即可)。
 3) 当触发收益/曝光回调时，调用相应 Wrapper 将数据上报到 SolarEngine：
-   - AdMob：onPaidEvent → `AdMobAdWrapper.*` → `AdMobSolarEngineTracker`
-   - MAX：AdRevenuePaid → `Max*AdWrapper` → `MaxSolarEngineTracker`
-   - Gromore：`getShowEcpm()` → `GromoreAdWrapper` → `GromoreSolarEngineTracker`
-   - IronSource：`IronSourceWrapper.addImpressionDataListener(...)`（不要直接用 `LevelPlay.addImpressionDataListener(...)`）→ `IronSourceSolarEngineTracker`
-   - Taku/TopOn：回调信息 → `TakuAdWrapper` / `TopOnAdWrapper` → 各自 Tracker
+   - AdMob：onPaidEventListener → `AdMobAdWrapper`
+     
+     示例（插屏）：
+     ```kotlin
+     interstitialAd.fullScreenContentCallback = object : FullScreenContentCallback() {}
+     interstitialAd.onPaidEventListener = AdMobAdWrapper.buildInterstitialOnPaidEventListener()
+     ```
+   - MAX：`onAdRevenuePaid()` → `Max*AdWrapper`
+     
+     示例（激励）：
+     ```kotlin
+     val rewarded = MaxRewardedAd.getInstance("YOUR_UNIT_ID", this)
+     rewarded.setListener(object : MaxRewardedAdListener {
+         override fun onAdRevenuePaid(ad: MaxAd) {
+             MaxRewardedAdWrapper.onAdRevenuePaid(ad)
+         }
+     })
+     ```
+   - Gromore：`onAdShow()` → `GromoreAdWrapper`
+     
+     示例（插屏，展示后）：
+     ```kotlin
+     override fun onFullScreenVideoAdLoad(ad: TTFullScreenVideoAd) {
+         interstitialAd = ad
+         ad.setFullScreenVideoAdInteractionListener(object : TTFullScreenVideoAd.FullScreenVideoAdInteractionListener {
+             override fun onAdShow() {
+                 GromoreAdWrapper.trackInterstitialAdImpression(this@GromoreAdActivity, interstitialAd)
+             }
+         })
+     }
+     ```
+   - IronSource：`IronSourceWrapper.addImpressionDataListener(context, yourListener)`（不要直接调用 `LevelPlay.addImpressionDataListener(...)`）
+     
+     示例：
+     ```kotlin
+     IronSourceWrapper.addImpressionDataListener(this) { data ->
+         // 你的逻辑（Wrapper 已经上报至 SolarEngine）
+     }
+     ```
+   - Taku/TopOn：回调信息 → `TakuAdWrapper` / `TopOnAdWrapper`
+     
+     示例（Taku，激励,展示后）：
+     ```java
+     public void onRewardedVideoAdPlayStart(String placementId, ATCallbackInfo info) {
+         TakuAdWrapper.TrackRewardedAdRevenue(TakuAdType.RewardVideo, info);
+     }
+     ```
 4) 业务层只关注加载/展示，Wrapper 负责参数归一与 SolarEngine 上报。
 
 ### 范围之外
