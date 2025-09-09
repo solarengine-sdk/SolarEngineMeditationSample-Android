@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.applovin.mediation.nativeAds.MaxNativeAdView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="16dp">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/max_native_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="8dp"
+        tools:text="Ad Title" />
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/max_native_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginBottom="8dp"
+        tools:text="Ad Description" />
+
+    <!-- Media Content -->
+    <FrameLayout
+        android:id="@+id/max_native_media_content"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="8dp"
+        android:background="#CCCCCC" />
+
+    <!-- Call to Action Button -->
+    <Button
+        android:id="@+id/max_native_cta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:padding="8dp"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"
+        tools:text="Install Now" />
+
+    <!-- Privacy Information Icon -->
+    <ImageView
+        android:id="@+id/max_native_options"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="top|end"
+        android:src="@android:drawable/ic_menu_info_details"
+        android:background="@android:color/transparent" />
+
+</com.applovin.mediation.nativeAds.MaxNativeAdView>

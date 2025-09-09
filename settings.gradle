@@ -1,0 +1,43 @@
+pluginManagement {
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+
+        // SE SDK仓库地址
+        maven { url "https://maven-android.solar-engine.com/repository/se_sdk_for_android/" }
+        maven { url "https://developer.huawei.com/repo/" }
+        maven { url "https://developer.hihonor.com/repo/" }
+        
+        // TopOn SDK Maven repository
+        maven {
+            url "https://jfrog.anythinktech.com/artifactory/overseas_sdk"
+        }
+
+        // Taku SDK Maven repository        
+        maven { url "https://jfrog.takuad.com/artifactory/china_sdk" }
+        
+        // IronSource SDK Maven repository
+        maven { url "https://android-sdk.is.com" }
+        
+        // Gromore SDK Maven repository
+        maven { url "https://artifact.bytedance.com/repository/pangle" }
+
+    }
+}
+
+rootProject.name = "SolarEngineMeditationSample-Android"
+include ':app'

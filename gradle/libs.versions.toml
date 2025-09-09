@@ -1,0 +1,59 @@
+[versions]
+agp = "8.2.2"
+applovinSdk = "13.3.1"
+googleAdmob = "22.6.0"
+mediationSdk = "8.10.0"
+mediationSdkVersion = "7.0.1.2"
+toponSdk = "6.5.10"
+takuSdk = "6.5.10"
+kotlin = "1.9.10"
+coreKtx = "1.12.0"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+lifecycleRuntimeKtx = "2.7.0"
+activityCompose = "1.8.2"
+composeBom = "2023.10.01"
+composeCompiler = "1.5.3"  # 添加Compose编译器版本
+playServicesAds = "18.0.1"
+solarEngineSdk = "1.3.1.0"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+applovin-sdk = { module = "com.applovin:applovin-sdk", version.ref = "applovinSdk" }
+banner-taku = { module = "com.anythink.sdk:banner-taku", version.ref = "toponSdk" }
+cn-mediation-sdk = { module = "com.pangle_beta.cn:mediation-sdk", version.ref = "mediationSdkVersion" }
+core-china-taku = { module = "com.anythink.sdk:core-china-taku", version.ref = "toponSdk" }
+core-taku = { module = "com.anythink.sdk:core-taku", version.ref = "toponSdk" }
+google-admob = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "googleAdmob" }
+interstitial-taku = { module = "com.anythink.sdk:interstitial-taku", version.ref = "toponSdk" }
+mediation-sdk = { module = "com.unity3d.ads-mediation:mediation-sdk", version.ref = "mediationSdk" }
+nativead-taku = { module = "com.anythink.sdk:nativead-taku", version.ref = "toponSdk" }
+rewardedvideo-taku = { module = "com.anythink.sdk:rewardedvideo-taku", version.ref = "toponSdk" }
+splash-taku = { module = "com.anythink.sdk:splash-taku", version.ref = "toponSdk" }
+topon-sdk = { group = "com.anythink.sdk", name = "core", version.ref = "toponSdk" }
+taku-sdk = { group = "com.taku.sdk", name = "core", version.ref = "takuSdk" }
+play-services-ads-identifier = { group = "com.google.android.gms", name = "play-services-ads-identifier", version.ref = "playServicesAds" }
+solar-engine-core-china = { group = "com.reyun.solar.engine.china", name = "solar-engine-core", version.ref = "solarEngineSdk" }
+solar-engine-core-oversea = { group = "com.reyun.solar.engine.oversea", name = "solar-engine-core", version.ref = "solarEngineSdk" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-annotation = { group = "androidx.annotation", name = "annotation", version = "1.7.1" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+

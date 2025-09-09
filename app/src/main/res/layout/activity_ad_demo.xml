@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".activity.MaxAdActivity">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ad Demo"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="32dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select the ad type to demonstrate:"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnInterstitial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Interstitial Ad"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_background" />
+
+    <Button
+        android:id="@+id/btnRewarded"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rewarded Video Ad"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_background" />
+
+    <Button
+        android:id="@+id/btnBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Banner Ad"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_background" />
+
+    <Button
+        android:id="@+id/btnMrec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Native Ad"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_background" />
+
+    <Button
+        android:id="@+id/btnSplash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Splash Ad Demo"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_background" />
+
+    <!-- Banner Ad Container -->
+    <FrameLayout
+        android:id="@+id/bannerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:minHeight="50dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Note: Currently in framework stage, actual ad functionality requires SDK integration"
+        android:textSize="12sp"
+        android:textColor="@android:color/darker_gray"
+        android:gravity="center"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

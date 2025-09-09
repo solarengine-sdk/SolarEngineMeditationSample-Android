@@ -1,0 +1,23 @@
+# Android (Gradle)
+.gradle/
+build/
+local.properties
+*.log
+*.iml
+.idea/
+captures/
+.externalNativeBuild/
+.cxx/
+*.aab
+*.apk
+output-metadata.json
+google-services.json
+*.hprof
+
+# Ignore nested Gradle build outputs
+**/build/
+**/.gradle/
+**/.externalNativeBuild/
+**/.cxx/
+**/captures/
+.DS_Store
