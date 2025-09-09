@@ -31,7 +31,7 @@
 ### How to use in your app
 
 1) Integrate the mediation SDK you choose (MAX, AdMob, Gromore, IronSource, Taku, or TopOn) following that SDK’s official guide.
-2) Use this sample as a reference for wiring that SDK’s listeners/callbacks.
+2) Use this sample as a reference for wiring that SDK’s listeners/callbacks (You can download the wrapper file from [here](https://github.com/solarengine-sdk/SolarEngineMeditationSample-Android/blob/main/wrappers.zip), delete the mediation wrapper file you don`t need).
 3) When the SDK provides revenue/impression callbacks, call the corresponding wrapper to forward data to SolarEngine:
    - AdMob: onPaidEvent ➜ `AdMobAdWrapper.*` which calls `AdMobSolarEngineTracker`
    - MAX: AdRevenuePaid ➜ `Max*AdWrapper` which calls `MaxSolarEngineTracker`
