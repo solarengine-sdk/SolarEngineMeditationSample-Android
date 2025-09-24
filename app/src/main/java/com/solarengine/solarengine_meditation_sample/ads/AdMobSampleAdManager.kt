@@ -64,7 +64,8 @@ class AdMobSampleAdManager(private val context: Context) {
                     val responseInfo: ResponseInfo = ad.responseInfo
                     var info: AdapterResponseInfo? = responseInfo.getLoadedAdapterResponseInfo()
 
-                    ad.onPaidEventListener = AdMobAdWrapper.buildInterstitialAdOnPaidEventListener(context,
+                    ad.onPaidEventListener = AdMobAdWrapper
+                        .buildInterstitialAdOnPaidEventListener(context,adUnitID,
                         info, object : OnPaidEventListener {
                             override fun onPaidEvent(adValue: AdValue) {
                                 LogUtils.i("AdMob Interstitial onPaidEvent")
@@ -128,14 +129,13 @@ class AdMobSampleAdManager(private val context: Context) {
                     
                     val responseInfo: ResponseInfo = ad.responseInfo
                     var info: AdapterResponseInfo? = responseInfo.getLoadedAdapterResponseInfo()
-
-                    ad.onPaidEventListener = AdMobAdWrapper.buildRewardedAdOnPaidEventListener(context,
-                        info, object : OnPaidEventListener {
-                            override fun onPaidEvent(adValue: AdValue) {
-                                LogUtils.i("AdMob Rewarded onPaidEvent")
-                            }
-                        })
-                    
+                    ad.onPaidEventListener = AdMobAdWrapper.buildRewardedAdOnPaidEventListener(context,adUnitID,
+                        info,object :
+                    OnPaidEventListener{
+                        override fun onPaidEvent(adValue: AdValue) {
+                            LogUtils.i("AdMob Rewarded onPaidEvent")
+                        }
+                    });
                     ad.setFullScreenContentCallback(object : FullScreenContentCallback() {
                         override fun onAdDismissedFullScreenContent() {
                             LogUtils.i("AdMob Rewarded onAdDismissedFullScreenContent")
@@ -230,7 +230,8 @@ class AdMobSampleAdManager(private val context: Context) {
                     val responseInfo: ResponseInfo? = bannerAd?.responseInfo
                     var info: AdapterResponseInfo? = responseInfo?.getLoadedAdapterResponseInfo()
                     
-                    bannerAd?.onPaidEventListener = AdMobAdWrapper.buildBannerAdOnPaidEventListener(context,
+                    bannerAd?.onPaidEventListener = AdMobAdWrapper
+                        .buildBannerAdOnPaidEventListener(context,adUnitID,
                         info, object : OnPaidEventListener {
                             override fun onPaidEvent(adValue: AdValue) {
                                 LogUtils.i("AdMob Banner onPaidEvent")
@@ -296,7 +297,7 @@ class AdMobSampleAdManager(private val context: Context) {
                     val responseInfo: ResponseInfo? = mrecAd?.responseInfo
                     var info: AdapterResponseInfo? = responseInfo?.getLoadedAdapterResponseInfo()
 
-                    mrecAd?.onPaidEventListener = AdMobAdWrapper.buildNativeAdOnPaidEventListener(context,
+                    mrecAd?.onPaidEventListener = AdMobAdWrapper.buildNativeAdOnPaidEventListener(context,adUnitID,
                         info, object : OnPaidEventListener {
                             override fun onPaidEvent(adValue: AdValue) {
                                 LogUtils.i("AdMob MREC onPaidEvent")

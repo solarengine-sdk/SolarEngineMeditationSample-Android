@@ -22,6 +22,7 @@ public class AdMobAdWrapper {
      */
     @SuppressWarnings("unused")
     public static OnPaidEventListener buildRewardedAdOnPaidEventListener(Context context,
+                                                                         String adUnitId,
                                                                         AdapterResponseInfo adInfo,
                                                                         OnPaidEventListener userCallback) {
         LogUtils.i("AdMobAdWrapper.buildRewardedAdOnPaidEventListener() called");
@@ -31,7 +32,7 @@ public class AdMobAdWrapper {
             public void onPaidEvent(@NonNull AdValue adValue) {
                 LogUtils.i("AdMob Rewarded onPaidEvent");
 
-                AdMobSolarEngineTracker.trackAdImpression(context, adInfo, adValue, RewardVideo);
+                AdMobSolarEngineTracker.trackAdImpression(context,adUnitId, adInfo, adValue, RewardVideo);
                 // 调用SolarEngine埋点上报广告展示事件
                 if (userCallback != null) {
                     userCallback.onPaidEvent(adValue);
@@ -45,6 +46,7 @@ public class AdMobAdWrapper {
      */
     @SuppressWarnings("unused")
     public static OnPaidEventListener buildInterstitialAdOnPaidEventListener(Context context,
+                                                                             String adUnitId,
                                                                             AdapterResponseInfo adInfo,
                                                                             OnPaidEventListener userCallback) {
         LogUtils.i("AdMobAdWrapper.buildInterstitialAdOnPaidEventListener() called");
@@ -54,7 +56,7 @@ public class AdMobAdWrapper {
             public void onPaidEvent(@NonNull AdValue adValue) {
                 LogUtils.i("AdMob Interstitial onPaidEvent");
 
-                AdMobSolarEngineTracker.trackAdImpression(context, adInfo, adValue, InterstitialVideo);
+                AdMobSolarEngineTracker.trackAdImpression(context,adUnitId, adInfo, adValue, InterstitialVideo);
                 // 调用SolarEngine埋点上报广告展示事件
                 if (userCallback != null) {
                     userCallback.onPaidEvent(adValue);
@@ -68,6 +70,7 @@ public class AdMobAdWrapper {
      */
     @SuppressWarnings("unused")
     public static OnPaidEventListener buildBannerAdOnPaidEventListener(Context context,
+                                                                       String adUnitId,
                                                                       AdapterResponseInfo adInfo,
                                                                       OnPaidEventListener userCallback) {
         LogUtils.i("AdMobAdWrapper.buildBannerAdOnPaidEventListener() called");
@@ -77,7 +80,7 @@ public class AdMobAdWrapper {
             public void onPaidEvent(@NonNull AdValue adValue) {
                 LogUtils.i("AdMob Banner onPaidEvent");
 
-                AdMobSolarEngineTracker.trackAdImpression(context, adInfo, adValue, Banner);
+                AdMobSolarEngineTracker.trackAdImpression(context,adUnitId, adInfo, adValue, Banner);
                 // 调用SolarEngine埋点上报广告展示事件
                 if (userCallback != null) {
                     userCallback.onPaidEvent(adValue);
@@ -91,6 +94,7 @@ public class AdMobAdWrapper {
      */
     @SuppressWarnings("unused")
     public static OnPaidEventListener buildNativeAdOnPaidEventListener(Context context,
+                                                                       String adUnitId,
                                                                       AdapterResponseInfo adInfo,
                                                                       OnPaidEventListener userCallback) {
         LogUtils.i("AdMobAdWrapper.buildNativeAdOnPaidEventListener() called");
@@ -100,7 +104,7 @@ public class AdMobAdWrapper {
             public void onPaidEvent(@NonNull AdValue adValue) {
                 LogUtils.i("AdMob Native onPaidEvent");
 
-                AdMobSolarEngineTracker.trackAdImpression(context, adInfo, adValue, Native);
+                AdMobSolarEngineTracker.trackAdImpression(context,adUnitId, adInfo, adValue, Native);
                 // 调用SolarEngine埋点上报广告展示事件
                 if (userCallback != null) {
                     userCallback.onPaidEvent(adValue);
@@ -114,6 +118,7 @@ public class AdMobAdWrapper {
      */
     @SuppressWarnings("unused")
     public static OnPaidEventListener buildAppOpenAdOnPaidEventListener(Context context,
+                                                                        String adUnitId,
                                                                        AdapterResponseInfo adInfo,
                                                                        OnPaidEventListener userCallback) {
         LogUtils.i("AdMobAdWrapper.buildAppOpenAdOnPaidEventListener() called");
@@ -123,7 +128,8 @@ public class AdMobAdWrapper {
             public void onPaidEvent(@NonNull AdValue adValue) {
                 LogUtils.i("AdMob App Open onPaidEvent");
 
-                AdMobSolarEngineTracker.trackAdImpression(context, adInfo, adValue, Splash);
+                AdMobSolarEngineTracker.trackAdImpression(context,adUnitId, adInfo, adValue,
+                        Splash);
                 // 调用SolarEngine埋点上报广告展示事件
                 if (userCallback != null) {
                     userCallback.onPaidEvent(adValue);

@@ -29,7 +29,9 @@ public class AdMobSolarEngineTracker {
      * Track ad impression for AdMob ads with AdValue
      */
     @SuppressWarnings("unused")
-    public static void trackAdImpression(Context context, AdapterResponseInfo adInfo,
+    public static void trackAdImpression(Context context,
+                                         String adUnitId,
+                                         AdapterResponseInfo adInfo,
                                          AdValue adValue,
                                          AdType adType) {
         LogUtils.i("AdMobSolarEngineTracker.trackAdImpression() called ");
@@ -37,15 +39,13 @@ public class AdMobSolarEngineTracker {
         try {
             String adSourceName = adInfo.getAdSourceName();
             String adSourceId = adInfo.getAdSourceId();
-            String adSourceInstanceId = adInfo.getAdSourceInstanceId();
-
 
             SEAdImpEventModel model = new SEAdImpEventModel();
             model.adNetworkPlatform = adSourceName;
             model.mediationPlatform = "Admob";
             model.adType = adType.intValue();
             model.adNetworkAppID = adSourceId;
-            model.adNetworkADID = adSourceInstanceId;
+            model.adNetworkADID = adUnitId;
             model.ecpm = adValue.getValueMicros() / 1000.0; // Convert micros to dollars
             model.currencyType = adValue.getCurrencyCode();;
             model.isRenderSuccess = true;
